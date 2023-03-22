@@ -41,14 +41,11 @@ def usuario_input():
         except:
             print("Insira apenas números")
 
-def rodar(gaveteiro):
+def rodar(gaveteiro, programa):
     
     epi = 0
 
     acumulador = 0
-
-    gaveteiro[12] = 5
-    gaveteiro[13] = 3
 
     while gaveteiro[epi]:
 
@@ -58,6 +55,7 @@ def rodar(gaveteiro):
         if gaveteiro[epi] == "000":
             return "Programa finalizado com sucesso"
         
+        # print("gvt",epi,gaveteiro[epi])
         if gaveteiro[epi][:2] == "0-":
             acumulador = int(gaveteiro[epi][-1])
             epi += 1
@@ -81,7 +79,7 @@ def rodar(gaveteiro):
                 while len(gaveteiro[ende]) < 3:
 
                     gaveteiro[ende] = "0"+gaveteiro[ende]
-
+                    
                 epi+=1
 
             case '2': # Somar com Acumulador
@@ -123,6 +121,9 @@ def rodar(gaveteiro):
 
             case '7': # Ler do usuário
                 ende = int(gaveteiro[epi][1:])
+                if(ende < len(programa)):
+                    return "Acesso de memória indevida na linha "+str(epi + 1)
+                
                 gaveteiro[ende] = usuario_input()
 
                 epi+=1

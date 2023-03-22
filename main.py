@@ -12,6 +12,6 @@ gaveteiro = [0 for i in range(100)]
 
 print(chico.carregar(programa,gaveteiro))
 
-print(chico.rodar(gaveteiro))
+print(chico.rodar(gaveteiro, programa))
 
 file.close()
