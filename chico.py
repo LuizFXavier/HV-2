@@ -52,15 +52,16 @@ def rodar(gaveteiro):
 
     while gaveteiro[epi]:
 
+        if epi > 99:
+            return "Programa atingiu última 'gaveta' sem finalizar"
+        
         if gaveteiro[epi] == "000":
             return "Programa finalizado com sucesso"
         
         if gaveteiro[epi][:2] == "0-":
             acumulador = int(gaveteiro[epi][-1])
             epi += 1
-
-        if epi > 99:
-            return "Programa atingiu última 'gaveta' sem finalizar"
+            continue
 
         match gaveteiro[epi][0]:
             case '0': # Gaveta para Acumulador
@@ -85,7 +86,7 @@ def rodar(gaveteiro):
 
             case '2': # Somar com Acumulador
                 ende = int(gaveteiro[epi][1:])
-                print((acumulador))
+                
                 acumulador += int(gaveteiro[ende])
 
                 epi+=1
@@ -129,9 +130,10 @@ def rodar(gaveteiro):
             case '8': # Escrever na saída
                 ende = int(gaveteiro[epi][1:])
                 print(gaveteiro[ende])
-
                 epi+=1
 
             case '9': # Ir para endereço
                 ende = int(gaveteiro[epi][1:])
                 epi = ende
+
+    return "Instrução de finalização não encontrada, saída automática."          
